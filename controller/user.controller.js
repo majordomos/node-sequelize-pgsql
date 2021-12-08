@@ -1,5 +1,5 @@
 const userDao = require("../dao/user.dao");
-var userController = {
+const userController = {
   addUser: addUser,
   findUsers: findUsers,
   findUserById: findUserById,
@@ -8,10 +8,10 @@ var userController = {
 };
 
 function addUser(req, res) {
-    let user = req.body;
+    const user = req.body;
     userDao.create(user).
         then((data) => {
-            res.send(data);
+            res.status(200).send(data);
         })
         .catch((error) => {
             console.log(error);
@@ -21,7 +21,7 @@ function addUser(req, res) {
 function findUserById(req, res) {
     userDao.findById(req.params.id).
         then((data) => {
-            res.send(data);
+            res.status(200).send(data);
         })
         .catch((error) => {
             console.log(error);
@@ -57,7 +57,7 @@ function updateUser(req, res) {
 function findUsers(req, res) {
     userDao.findAll().
         then((data) => {
-            res.send(data);
+            res.status(200).send(data);
         })
         .catch((error) => {
             console.log(error);
